@@ -15,7 +15,7 @@ ArrayList*	createArrayList(int maxElementCount){
 	else
 	{
 		printf("최대 원소 개수는 1개 이상이여야 합니다.");
-		pList->pElement = NULL;
+		pList = NULL;
 	}
 	return (pList);
 }
@@ -79,7 +79,6 @@ int removeALElement(ArrayList* pList, int position) {
 	for(int i = position; i < pList->currentElementCount; i++)
 		pList->pElement[i] = pList->pElement[i + 1];
 	pList->currentElementCount--;
-	pList->pElement[pList->currentElementCount].data = 0; 
 	return (TRUE);
 }
 
