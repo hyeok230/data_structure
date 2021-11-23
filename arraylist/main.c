@@ -1,6 +1,6 @@
 #include "arraylist.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 ArrayList*	createArrayList(int maxElementCount){
 	ArrayList*	pList;
@@ -8,9 +8,19 @@ ArrayList*	createArrayList(int maxElementCount){
 	if (maxElementCount > 0)
 	{
 		pList = (ArrayList*)malloc(sizeof(ArrayList));
+		if (pList == NULL)
+		{
+			prinf("malloc error!"\n);
+			return (NULL);
+		}
 		pList->maxElementCount = maxElementCount;
 		pList->currentElementCount = 0;
 		pList->pElement = (ArrayListNode*)malloc(sizeof(ArrayListNode) * maxElementCount);
+		if (pList->pElement == NULL)
+		{
+			prinf("malloc error!"\n);
+			return (NULL);
+		}
 	}
 	else
 	{

@@ -1,11 +1,16 @@
 #include "linkedlist.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 LinkedList* createLinkedList() {
 	LinkedList* pList;
 
 	pList = (LinkedList*)malloc(sizeof(LinkedList));
+	if (pList == NULL)
+	{
+		printf("malloc error!\n");
+		return (NULL);
+	}
 	pList->currentElementCount = 0;
 	pList->headerNode.data = -1;
 	pList->headerNode.pLink = NULL;
@@ -57,6 +62,7 @@ int removeLLElement(LinkedList* pList, int position) {
 		preNode = preNode->pLink;
 	delNode = preNode->pLink;
 	preNode->pLink = delNode->pLink;
+	free(delNode);
 	pList->currentElementCount--;
 	return (TRUE);
 }
