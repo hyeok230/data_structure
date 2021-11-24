@@ -181,4 +181,5 @@ int main()
 	printf("=================================================\n");
 	clearLinkedList(pList);
 	displayLinkedList(pList);
+	printf("=================clearLinkedList=================\n");
 }
