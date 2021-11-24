@@ -115,48 +115,70 @@ void deleteLinkedList(LinkedList* pList) {
 	free(pList);
 }
 
+void displayLinkedList(LinkedList* pList)
+{
+	if (pList == NULL)
+	{
+		printf("pList error\n");
+		return ;
+	}
+	for (int i = 0; i < pList->currentElementCount; i++)
+		printf("index [%d] data -> %d\n", i, getLLElement(pList, i)->data);
+}
+
+void reverseLinkedList(LinkedList* pList)
+{
+	ListNode* preNode;
+	ListNode* currentNode;
+	ListNode* pNode;
+
+	if (pList == NULL)
+	{
+		printf("pList error\n");
+		return ;
+	}
+	preNode = NULL;
+	currentNode = NULL;
+	pNode = pList->headerNode.pLink;
+	while (pNode != NULL)
+	{
+		preNode = currentNode;
+		currentNode = pNode;
+		pNode = pNode->pLink;
+		currentNode->pLink = preNode;
+	}
+	pList->headerNode.pLink = currentNode;
+}
+
 int main()
 {
 	LinkedList* pList;
 	ListNode element;
-	ListNode element2;
-	element.data = 3;
-	element.pLink = NULL;
-	ListNode* print;
 
 	pList = createLinkedList();
-	addLLElement(pList, 0, element);
-
-	element.data = 5;
+	element.data = 4;
 	element.pLink = NULL;
 	addLLElement(pList, 0, element);
-	
-	print = &(pList->headerNode);
-	while(print)
-	{
-		printf("%d \n", print->data);
-		print = print->pLink;
-	}
-	removeLLElement(pList, 0);
-	print = &(pList->headerNode);
-	while(print)
-	{
-		printf("%d \n", print->data);
-		print = print->pLink;
-	}
-	removeLLElement(pList, 0);
-	print = &(pList->headerNode);
-	while(print)
-	{
-		printf("%d \n", print->data);
-		print = print->pLink;
-	}
+	displayLinkedList(pList);
+	printf("=================================================\n");
+	element.data = 3;
+	element.pLink = NULL;
+	addLLElement(pList, 0, element);
+	displayLinkedList(pList);
+	printf("=================================================\n");
+	element.data = 2;
+	element.pLink = NULL;
+	addLLElement(pList, 0, element);
+	displayLinkedList(pList);
+	printf("=================================================\n");
+	element.data = 1;
+	element.pLink = NULL;
+	addLLElement(pList, 0, element);
+	displayLinkedList(pList);
+	printf("=================================================\n");
+	reverseLinkedList(pList);
+	displayLinkedList(pList);
 	printf("=================================================\n");
 	clearLinkedList(pList);
-	print = &(pList->headerNode);
-	while(print)
-	{
-		printf("%d \n", print->data);
-		print = print->pLink;
-	}
+	displayLinkedList(pList);
 }
