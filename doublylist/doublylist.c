@@ -63,7 +63,6 @@ int addDLElement(DoublyList* pList, int position, DoublyListNode element) {
 }
 
 int removeDLElement(DoublyList* pList, int position) {
-	DoublyListNode* preNode;
 	DoublyListNode* delNode;
 	
 	if (pList == NULL)
@@ -76,12 +75,11 @@ int removeDLElement(DoublyList* pList, int position) {
 		printf("position error\n");
 		return (FALSE);
 	}
-	preNode = &(pList->headerNode);
-	for (int i = 0; i < position; i++)
-		preNode = preNode->pRLink;
-	delNode = preNode->pRLink;
-	preNode->pRLink = delNode->pRLink;
-	preNode->pRLink->pLLink = preNode;
+	delNode = &(pList->headerNode);
+	for (int i = 0; i <= position; i++)
+		delNode = delNode->pRLink;
+	delNode->pRLink->pLLink = delNode->pLLink;
+	delNode->pLLink->pRLink = delNode->pRLink;
 	free(delNode);
 	pList->currentElementCount--;
 	return (TRUE);
