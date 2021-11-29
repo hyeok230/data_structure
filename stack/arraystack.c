@@ -51,12 +51,7 @@ ArrayStackNode* popAS(ArrayStack* pStack) {
         printf("pStack is Empty");
         return (NULL);
     }
-    retNode = (ArrayStackNode*)malloc(sizeof(ArrayStackNode));
-    if (retNode == NULL) {
-        printf("malloc ERROR");
-        return (NULL);
-    }
-    *retNode = pStack->pElement[pStack->currentElementCount - 1];
+    retNode = &(pStack->pElement[pStack->currentElementCount - 1]);
     pStack->currentElementCount--;
     return (retNode);
 }
@@ -68,12 +63,7 @@ ArrayStackNode* peekAS(ArrayStack* pStack) {
         printf("pStack ERROR\n");
         return (NULL);
     }
-    retNode = (ArrayStackNode*)malloc(sizeof(ArrayStackNode));
-    if (retNode == NULL) {
-        printf("malloc ERROR");
-        return (NULL);
-    }
-    *retNode = pStack->pElement[pStack->currentElementCount - 1];
+    retNode = &(pStack->pElement[pStack->currentElementCount - 1]);
     return (retNode);
 }
 
