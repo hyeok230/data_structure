@@ -4,7 +4,7 @@
 #include "simdef.h"
 #include "linkeddeque.h"
 
-void insertCustomer(int arrivalTime, int processTime, LinkedDeque *pArrivalDeque);
+void insertCustomer(int arrivalTime, int processTime, char id, LinkedDeque *pArrivalDeque);
 void processArrival(int currentTime, LinkedDeque *pArrivalDeque, LinkedDeque *pWaitDeque);
 DequeNode* processServiceNodeStart(int currentTime, LinkedDeque *pWaitDeque);
 DequeNode* processServiceNodeEnd(int currentTime, DequeNode *pServiceNode, int *pServiceUserCount, int *pTotalWaitTime);

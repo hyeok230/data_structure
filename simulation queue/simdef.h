@@ -10,6 +10,7 @@ typedef struct SimCustomerType
 	int serviceTime;
 	int startTime;
 	int endTime;
+	char id;
 } SimCustomer;
 
 #endif

@@ -4,12 +4,17 @@
 #include "simdef.h"
 #include "simutil.h"
 
-void insertCustomer(int arrivalTime, int processTime, LinkedDeque *pArrivalDeque) {
+void insertCustomer(int arrivalTime, int processTime, char id, LinkedDeque *pArrivalDeque) {
     DequeNode pNode;
 
+    if (pArrivalDeque == NULL) {
+        printf("ERROR\n");
+        return ;
+    }
     pNode.customer.status = arrival;
     pNode.customer.arrivalTime = arrivalTime;
     pNode.customer.serviceTime = processTime;
+    pNode.customer.id = id;
     pNode.customer.startTime = 0;
     pNode.customer.endTime = 0;
     pNode.pLLink = NULL;
@@ -21,6 +26,10 @@ void processArrival(int currentTime, LinkedDeque* pArrivalDeque, LinkedDeque* pW
     DequeNode* pNode;
     int isEmpty;
 
+    if (pArrivalDeque == NULL || pWaitDeque == NULL) {
+        printf("ERROR\n");
+        return ;        
+    }
     isEmpty = isLinkedDequeEmpty(pArrivalDeque);
     while(isEmpty == FALSE) {
         pNode = peekFrontLD(pArrivalDeque);
@@ -39,6 +48,10 @@ void processArrival(int currentTime, LinkedDeque* pArrivalDeque, LinkedDeque* pW
 DequeNode* processServiceNodeStart(int currentTime, LinkedDeque* pWaitDeque) {
     DequeNode* pServiceNode;
     
+    if (pWaitDeque == NULL) {
+        printf("ERROR\n");
+        return (NULL);       
+    }
     pServiceNode = NULL;
     if (isLinkedDequeEmpty(pWaitDeque) == FALSE) {
         pServiceNode = deleteFrontLD(pWaitDeque);
@@ -67,26 +80,41 @@ DequeNode* processServiceNodeEnd(int currentTime, DequeNode* pServiceNode, int* 
 }
 
 void printSimCustomer(int currentTime, SimCustomer customer) {
-    printf("«ˆ¿Á Ω√∞¢ => [%d] ", currentTime);
+    printf("ÌòÑÏû¨ ÏãúÍ∞Å => [%d] ", currentTime);
     if (customer.status == arrival) {
-        printf("∞Ì∞¥ µµ¬¯\n");
+        printf("'%c' Í≥†Í∞ù ÎèÑÏ∞©\n", customer.id);
     } else if (customer.status == start) {
-        printf("∞Ì∞¥ º≠∫ÒΩ∫ Ω√¿€, µµ¬¯ Ω√∞£ => [%d] ¥Î±‚ Ω√∞£ => [%d]\n", customer.arrivalTime, currentTime - customer.arrivalTime);
+        printf("'%c' Í≥†Í∞ù ÏÑúÎπÑÏä§ ÏãúÏûë, ÏÑúÎπÑÏä§ ÏãúÍ∞Ñ => [%d], ÎåÄÍ∏∞ ÏãúÍ∞Ñ => [%d]\n", customer.id, customer.serviceTime, currentTime - customer.arrivalTime);
     } else {
-        printf("∞Ì∞¥ º≠∫ÒΩ∫ ¡æ∑·\n");
+        printf("%c Í≥†Í∞ù ÏÑúÎπÑÏä§ Ï¢ÖÎ£å\n", customer.id);
     }
 }
 
 void printWaitQueueStatus(int currentTime, LinkedDeque* pWaitDeque) {
-    printf("«ˆ¿Á Ω√∞¢ => [%d] ¥Î±‚ ∞Ì∞¥ ºˆ => [%d]\n", currentTime, pWaitDeque->currentElementCount);
+    DequeNode* printNode;
+
+    if (pWaitDeque == NULL) {
+        printf("ERROR\n");
+        return ;       
+    }
+    printf("ÌòÑÏû¨ ÏãúÍ∞Å => [%d] ÎåÄÍ∏∞ Í≥†Í∞ù Ïàò => [%d] ", currentTime, pWaitDeque->currentElementCount);
+    if (pWaitDeque->currentElementCount >0){
+        printNode = pWaitDeque->pFrontNode;
+        printf("ÎåÄÍ∏∞Ï§ëÏù∏ Í≥†Í∞ùÏùÄ");
+        for (int i =0; i < pWaitDeque->currentElementCount; i++) {
+            printf("[%c]", printNode->customer.id);
+            printNode = printNode->pRLink;
+        }
+    } 
+    printf("\n");
 }
 
 void printReport(LinkedDeque* pWaitDeque, int serviceUserCount, int totalWaitTime) {
-    printf("==========================report==========================\n");
-    printf("º≠∫ÒΩ∫«œ¡ˆ ∏¯«— ∞Ì∞¥ ºˆ => [%d], º≠∫ÒΩ∫«— ∞Ì∞¥ ºˆ => [%d], √— ¥Î±‚ Ω√∞£ => [%d], ∆Ú±’ ¥Î±‚ Ω√∞£ => [%.2f]\n", pWaitDeque->currentElementCount, serviceUserCount, totalWaitTime, (float)totalWaitTime / serviceUserCount);
+    printf("===================================report===================================\n");
+    printf("ÏÑúÎπÑÏä§ÌïòÏßÄ Î™ªÌïú Í≥†Í∞ù Ïàò => [%d], ÏÑúÎπÑÏä§Ìïú Í≥†Í∞ù Ïàò => [%d], Ï¥ù ÎåÄÍ∏∞ ÏãúÍ∞Ñ => [%d], ÌèâÍ∑† ÎåÄÍ∏∞ ÏãúÍ∞Ñ => [%.2f]\n", pWaitDeque->currentElementCount, serviceUserCount, totalWaitTime, (float)totalWaitTime / serviceUserCount);
 }
 
-void main () {
+int main () {
     int serviceUserCount;
     int totalWaitTime;
     int endTime;
@@ -100,12 +128,12 @@ void main () {
     pArrivalDeque = createLinkedDeque();
     pWaitDeque = createLinkedDeque();
     pServiceNode = NULL;
-    insertCustomer(0, 3, pArrivalDeque);
-    insertCustomer(2, 2, pArrivalDeque);
-    insertCustomer(4, 3, pArrivalDeque);
-    insertCustomer(5, 2, pArrivalDeque);
-    insertCustomer(6, 1, pArrivalDeque);
-    insertCustomer(8, 3, pArrivalDeque);
+    insertCustomer(0, 3, 'a', pArrivalDeque);
+    insertCustomer(2, 2, 'b', pArrivalDeque);
+    insertCustomer(4, 3, 'c', pArrivalDeque);
+    insertCustomer(5, 2, 'd', pArrivalDeque);
+    insertCustomer(6, 1, 'e', pArrivalDeque);
+    insertCustomer(8, 3, 'f', pArrivalDeque);
     for (int currentTime = 0; currentTime < endTime; currentTime++) {
         processArrival(currentTime, pArrivalDeque, pWaitDeque);
 
@@ -123,5 +151,4 @@ void main () {
     }
     free(pArrivalDeque);
     free(pWaitDeque);
-    while(1);
 }
