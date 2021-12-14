@@ -92,10 +92,9 @@ void deleteBinTree(BinTree* pBinTree) {
 
 void deleteBinTreeNode(BinTreeNode* pNode) {
     if (pNode == NULL) {
-        printf("pNode ERROR\n");
         return ;
     }
-    free(pNode->pLeftChild);
-    free(pNode->pRightChild);
+    deleteBinTreeNode(pNode->pLeftChild);
+    deleteBinTreeNode(pNode->pRightChild);
     free(pNode);
 }
