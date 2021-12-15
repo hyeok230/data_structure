@@ -3,29 +3,33 @@
 #include <stdlib.h>
 
 Heap* createHeap(int maxElementCount) {
+    Heap* pHeap;
 
+    if (maxElementCount <= 0) {
+        printf("maxElementCount ERROR\n");
+        return (NULL);
+    }
+    pHeap = (Heap*)malloc(sizeof(Heap));
+    pHeap->maxElementCount = maxElementCount;
+    pHeap->currentElementCount = 0;
+    pHeap->pElement = (HeapNode*)malloc(sizeof(HeapNode) * maxElementCount);
+    return (pHeap);
 }
 
-int insertMaxHeap(Heap* pHeap, int data) {
-
+int insertHeap(Heap* pHeap, int data) {
+    return (TRUE);
 }
 
-int insertMinHeap(Heap* pHeap, int data) {
-
-}
-
-HeapNode* deleteMaxHeap(Heap* pHeap) {
-
-}
-
-HeapNode* deleteMinHeap(Heap* pHeap) {
-
+HeapNode* deleteHeapNode(Heap* pHeap) {
+    return (NULL);
 }
 
 void deleteHeap(Heap* pHeap) {
-
+    return ;
 }
 
 int main() {
+    Heap* pHeap;
 
+    pHeap = createHeap(100);
 }

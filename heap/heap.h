@@ -16,10 +16,8 @@ typedef struct HeapType
 Heap* createHeap(int maxElementCount);
 void deleteHeap(Heap* pHeap);
 int isHeapFull(Heap* pHeap);
-int insertMaxHeap(Heap* pHeap, int data);
-int insertMinHeap(Heap* pHeap, int data);
-HeapNode* deleteMaxHeap(Heap* pHeap);
-HeapNode* deleteMinHeap(Heap* pHeap);
+int insertHeap(Heap* pHeap, int data);
+HeapNode* deleteHeapNode(Heap* pHeap);
 
 #endif
 
