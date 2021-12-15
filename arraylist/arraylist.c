@@ -10,7 +10,7 @@ ArrayList*	createArrayList(int maxElementCount){
 		pList = (ArrayList*)malloc(sizeof(ArrayList));
 		if (pList == NULL)
 		{
-			prinf("malloc error!"\n);
+			prinf("malloc error!\n");
 			return (NULL);
 		}
 		pList->maxElementCount = maxElementCount;
@@ -18,7 +18,7 @@ ArrayList*	createArrayList(int maxElementCount){
 		pList->pElement = (ArrayListNode*)malloc(sizeof(ArrayListNode) * maxElementCount);
 		if (pList->pElement == NULL)
 		{
-			prinf("malloc error!"\n);
+			prinf("malloc error!\n");
 			return (NULL);
 		}
 	}
