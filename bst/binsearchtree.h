@@ -17,7 +17,12 @@ typedef struct BinSearchTreeType
 
 BinSearchTree* createBinSearchTree();
 int insertElementBST(BinSearchTree* pBinSearchTree, BinSearchTreeNode element);
+BinSearchTreeNode* insertInternalRecursiveElementBST(BinSearchTreeNode* pNode, BinSearchTreeNode element);
+int insertRecursiveElementBST(BinSearchTree* pBinSearchTree, BinSearchTreeNode element);
 int deleteElementBST(BinSearchTree* pBinSearchTree, int key);
+BinSearchTreeNode* findMinNode(BinSearchTreeNode* pNode);
+BinSearchTreeNode* deleteInternalRecursiveElementBST(BinSearchTreeNode* pNode, int key);
+int deleteRecursiveElementBST(BinSearchTree* pBinSearchTree, int key);
 BinSearchTreeNode* searchRecursiveBST(BinSearchTree* pBinSearchTree, int key);
 BinSearchTreeNode* searchInternalRecursiveBST(BinSearchTreeNode* pTreeNode, int key);
 BinSearchTreeNode* searchBST(BinSearchTree* pBinSearchTree, int key);
