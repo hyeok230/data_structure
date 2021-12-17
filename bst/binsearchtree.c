@@ -162,8 +162,10 @@ int deleteElementBST(BinSearchTree* pBinSearchTree, int key) {
             successorNode = successorNode->pRightChild;
         }
         if (parentSuccessorNode->pLeftChild == successorNode) {
+            // delNode의 바로 왼쪽에 붙여야할 후임 노드가 있는 경우
             parentSuccessorNode->pLeftChild = successorNode->pLeftChild;
         } else {
+            // delNode의 왼쪽을 시작으로 오른쪽으로 더 들어가야 후임 노드가 있는 경우
             parentSuccessorNode->pRightChild = successorNode->pLeftChild;
         }
         delNode->key = successorNode->key;
