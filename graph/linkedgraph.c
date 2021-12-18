@@ -287,14 +287,14 @@ int main() {
     addVertexLG(directGraph, 4);
     addVertexLG(directGraph, 5);
     addEdgewithWeightLG(directGraph, 0, 1, 1);
-    addEdgewithWeightLG(directGraph, 1, 2, 1);
+    addEdgewithWeightLG(directGraph, 1, 2, 3);
     addEdgewithWeightLG(directGraph, 2, 3, 1);
-    addEdgewithWeightLG(directGraph, 2, 1, 1);
+    addEdgewithWeightLG(directGraph, 2, 1, 4);
     addEdgewithWeightLG(directGraph, 2, 0, 1);
     addEdgewithWeightLG(directGraph, 3, 4, 1);
-    addEdgewithWeightLG(directGraph, 3, 2, 1);
+    addEdgewithWeightLG(directGraph, 3, 2, 5);
     addEdgewithWeightLG(directGraph, 4, 5, 1);
-    addEdgewithWeightLG(directGraph, 5, 3, 1);
+    addEdgewithWeightLG(directGraph, 5, 3, 2);
     printf("==========================Direct Graph===========================\n");
     displayLinkedGraph(directGraph);
     printf("=======================remove vertexID 1=======================\n");
