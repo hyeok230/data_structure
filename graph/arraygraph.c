@@ -157,7 +157,7 @@ int removeEdgeAG(ArrayGraph* pGraph, int fromVertexID, int toVertexID) {
         printf("pGraph ERROR\n");
         return (FAIL);
     }
-    if (checkVertexValid(pGraph, fromVertexID) == FALSE || checkVertexValid(pGraph, toVertexID)) {
+    if (checkVertexValid(pGraph, fromVertexID) == FALSE || checkVertexValid(pGraph, toVertexID) == FALSE) {
         printf("Vertex not used ERROR\n");
         return (FAIL);
     }
@@ -217,6 +217,12 @@ int main() {
     addEdgeAG(undirectGraph, 5, 4);
     printf("=========================Undirect Graph=========================\n");
     displayArrayGraph(undirectGraph);
+    printf("=======================remove vertexID 1=======================\n");
+    removeVertexAG(undirectGraph, 1);
+    displayArrayGraph(undirectGraph);
+    printf("====================remove edge (2,0) (0,2)====================\n");
+    removeEdgeAG(undirectGraph, 2, 0);
+    displayArrayGraph(undirectGraph);
     addVertexAG(directGraph, 0);
     addVertexAG(directGraph, 1);
     addVertexAG(directGraph, 2);
@@ -232,6 +238,14 @@ int main() {
     addEdgewithWeightAG(directGraph, 3, 4, 1);
     addEdgewithWeightAG(directGraph, 4, 5, 1);
     addEdgewithWeightAG(directGraph, 5, 3, 2);
-    printf("==========================Direct Graph==========================\n");
+    printf("==========================Direct Graph===========================\n");
     displayArrayGraph(directGraph);
+    printf("=======================remove vertexID 1=======================\n");
+    removeVertexAG(directGraph, 1);
+    displayArrayGraph(directGraph);
+    printf("=======================remove edge <2,0>=======================\n");
+    removeEdgeAG(directGraph, 2, 0);
+    displayArrayGraph(directGraph);
+    deleteArrayGraph(undirectGraph);
+    deleteArrayGraph(directGraph);
 }
