@@ -3,7 +3,8 @@
 
 typedef struct ListNodeType
 {
-	int data;
+	int vertexID;
+	int weight;
 	struct ListNodeType* pLink;
 } ListNode;
 
@@ -20,6 +21,7 @@ ListNode* getLLElement(LinkedList* pList, int position);
 void clearLinkedList(LinkedList* pList);
 int getLinkedListLength(LinkedList* pList);
 void deleteLinkedList(LinkedList* pList);
+void displayLinkedList(LinkedList* pList);
 #endif
 
 #ifndef _COMMON_LIST_DEF_
