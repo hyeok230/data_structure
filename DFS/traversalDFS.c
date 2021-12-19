@@ -62,5 +62,27 @@ void traversalDFS(LinkedGraph* pGraph, int startVertexID) {
 }
 
 int main() {
+    LinkedGraph* undirectedGraph;
 
+    undirectedGraph = createLinkedGraph(8);
+    addVertexLG(undirectedGraph, 0);
+    addVertexLG(undirectedGraph, 1);
+    addVertexLG(undirectedGraph, 2);
+    addVertexLG(undirectedGraph, 3);
+    addVertexLG(undirectedGraph, 4);
+    addVertexLG(undirectedGraph, 5);
+    addVertexLG(undirectedGraph, 6);
+    addVertexLG(undirectedGraph, 7);
+    addEdgeLG(undirectedGraph, 1, 0);
+    addEdgeLG(undirectedGraph, 1, 3);
+    addEdgeLG(undirectedGraph, 1, 4);
+    addEdgeLG(undirectedGraph, 2, 0);
+    addEdgeLG(undirectedGraph, 2, 5);
+    addEdgeLG(undirectedGraph, 2, 6);
+    addEdgeLG(undirectedGraph, 3, 7);
+    addEdgeLG(undirectedGraph, 4, 5);
+    printf("=========================Undirect Graph=========================\n");
+    displayLinkedGraph(undirectedGraph);
+    printf("============================== DFS ==============================\n");
+    traversalDFS(undirectedGraph, 0);
 }
