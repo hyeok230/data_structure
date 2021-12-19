@@ -303,6 +303,4 @@ int main() {
     printf("=======================remove edge <2,0>=======================\n");
     removeEdgeLG(directGraph, 2, 0);
     displayLinkedGraph(directGraph);
-
-
 }
