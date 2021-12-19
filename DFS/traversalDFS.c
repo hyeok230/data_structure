@@ -26,7 +26,7 @@ void traversalDFS(LinkedGraph* pGraph, int startVertexID) {
         printf("pGraph ERROR\n");
         return ;
     }
-    if (startVertexID < 0 || startVertexID > pGraph->maxVertexCount) {
+    if (startVertexID < 0 || startVertexID >= pGraph->maxVertexCount) {
         printf("startVertexID ERROR\n");
         return ;
     }
