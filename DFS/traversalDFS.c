@@ -17,7 +17,7 @@ int pushLSForDFS(LinkedStack* pStack, int nodeID) {
 
 void traversalDFS(LinkedGraph* pGraph, int startVertexID) {
     int* vertexVisitCheck;
-    LinkedStack *pStack;
+    LinkedStack* pStack;
     StackNode* pStackNode;
     int vertexID;
     ListNode* pListNode;
