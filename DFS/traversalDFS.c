@@ -31,6 +31,10 @@ void traversalDFS(LinkedGraph* pGraph, int startVertexID) {
         return ;
     }
     vertexVisitCheck = (int*)malloc(sizeof(int) * getMaxVertexCountLG(pGraph));
+    if (vertexVisitCheck == NULL) {
+        printf("vertexVisitCheck malloc ERROR\n");
+        return ;
+    }
     memset(vertexVisitCheck, FALSE, sizeof(int) * getMaxVertexCountLG(pGraph));
     vertexVisitCheck[startVertexID] = TRUE;
     pStack = createLinkedStack();
