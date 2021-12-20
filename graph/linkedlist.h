@@ -14,7 +14,7 @@ typedef struct LinkedListType
 	ListNode headerNode;	
 } LinkedList;
 
-LinkedList* createLinkedList();
+LinkedList* createLinkedList(void);
 int addLLElement(LinkedList* pList, int position, ListNode element);
 int removeLLElement(LinkedList* pList, int position);
 ListNode* getLLElement(LinkedList* pList, int position);
