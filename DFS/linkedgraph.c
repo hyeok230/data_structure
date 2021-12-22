@@ -80,6 +80,7 @@ int addVertexLG(LinkedGraph* pGraph, int vertexID) {
     }
     if (pGraph->pVertex[vertexID] == NOT_USED) {
         pGraph->pVertex[vertexID] = USED;
+        pGraph->currentVertexCount++;
         return (TRUE);
     }
     return (FAIL);

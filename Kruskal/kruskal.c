@@ -98,6 +98,7 @@ int main() {
     addEdgewithWeightLG(pGraph, 3, 5, 5);
     printf("============================Graph=============================\n");
     displayLinkedGraph(pGraph);
-    // mstGraph = mstKruskal(pGraph);
-    // displayLinkedGraph(mstGraph);
+    printf("===========================mstGraph============================\n");
+    mstGraph = mstKruskal(pGraph);
+    displayLinkedGraph(mstGraph);
 }

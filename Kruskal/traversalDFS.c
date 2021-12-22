@@ -21,44 +21,43 @@ int traversalDFS(LinkedGraph* pGraph, int startVertexID, int toVertexID) {
     StackNode* pStackNode;
     int vertexID;
     ListNode* pListNode;
-    int result;
 
     if (pGraph == NULL) {
         printf("pGraph ERROR\n");
-        return (TRUE);
+        return (3);
     }
     if (startVertexID < 0 || startVertexID >= pGraph->maxVertexCount) {
         printf("startVertexID ERROR\n");
-        return (TRUE);
+        return (3);
     }
     vertexVisitCheck = (int*)malloc(sizeof(int) * getMaxVertexCountLG(pGraph));
     if (vertexVisitCheck == NULL) {
         printf("vertexVisitCheck malloc ERROR\n");
-        return (TRUE);
+        return (3);
     }
     memset(vertexVisitCheck, FALSE, sizeof(int) * getMaxVertexCountLG(pGraph));
     vertexVisitCheck[startVertexID] = TRUE;
     pStack = createLinkedStack();
     if (pushLSForDFS(pStack, startVertexID) == FAIL) {
         printf("push Stack ERROR\n");
-        return (TRUE);
+        return (3);
     }
-    result = TRUE;
     while (!isLinkedStackEmpty(pStack)) {
         pStackNode = popLS(pStack);
         if (pStackNode == NULL)
             break;
         vertexID = pStackNode->data;
         if (vertexID == toVertexID) {
-            result = FALSE;
+            return (TRUE);
         }
+        // printf("visited vertexID => [%d]\n", vertexID);
         pListNode = pGraph->ppAdjEdge[vertexID]->headerNode.pLink;
         while (pListNode) {
             if (vertexVisitCheck[pListNode->vertexID] == FALSE) {
                 vertexVisitCheck[pListNode->vertexID] = TRUE;
                 if (pushLSForDFS(pStack, pListNode->vertexID) == FAIL) {
                     printf("push Stack ERROR\n");
-                    return (TRUE);
+                    return (3);
                 }
             }
             pListNode = pListNode->pLink;
@@ -67,5 +66,5 @@ int traversalDFS(LinkedGraph* pGraph, int startVertexID, int toVertexID) {
     }
     free(vertexVisitCheck);
     deleteLinkedStack(pStack);
-    return (result);
+    return (FALSE);
 }
