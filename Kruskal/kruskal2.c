@@ -64,6 +64,7 @@ int getParent(int* vertexUnion, int vertexID) {
     return (getParent(vertexUnion, vertexUnion[vertexID]));
 }
 
+// Union - Find 알고리즘을 이용한다. DFS를 이용했을 때보다 효율적이다.
 int checkCycle(int* vertexUnion, int fromVertexID, int toVertexID) {
     int parentForFromVertexID;
     int parentForToVertexID;
