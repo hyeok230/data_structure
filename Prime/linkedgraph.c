@@ -160,6 +160,7 @@ int removeVertexLG(LinkedGraph* pGraph, int vertexID) {
         return (FAIL);
     } 
     pGraph->pVertex[vertexID] = NOT_USED;
+    pGraph->currentVertexCount--;
     pGraph->currentEdgeCount  =  pGraph->currentEdgeCount - pGraph->ppAdjEdge[vertexID]->currentElementCount;
     clearLinkedList(pGraph->ppAdjEdge[vertexID]);
     for (int i = 0; i < pGraph->maxVertexCount; i++) {
