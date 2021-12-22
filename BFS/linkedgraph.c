@@ -112,6 +112,7 @@ int addEdgewithWeightLG(LinkedGraph* pGraph, int fromVertexID, int toVertexID, i
             printf("add Element ERROR\n");
             return (FAIL);
         } 
+        pGraph->currentEdgeCount++;
         if (pGraph->graphType == GRAPH_UNDIRECTED) {
             addEdgewithWeightLG(pGraph, toVertexID, fromVertexID, weight);
         }
@@ -158,6 +159,7 @@ int removeVertexLG(LinkedGraph* pGraph, int vertexID) {
         return (FAIL);
     } 
     pGraph->pVertex[vertexID] = NOT_USED;
+    pGraph->currentEdgeCount  =  pGraph->currentEdgeCount - pGraph->ppAdjEdge[vertexID]->currentElementCount;
     clearLinkedList(pGraph->ppAdjEdge[vertexID]);
     for (int i = 0; i < pGraph->maxVertexCount; i++) {
         if (i == vertexID) {
@@ -185,6 +187,7 @@ int removeEdgeLG(LinkedGraph* pGraph, int fromVertexID, int toVertexID) {
                 break;
             }
         }
+        pGraph->currentEdgeCount--;
         if (pGraph->graphType == GRAPH_UNDIRECTED) {
             result = removeEdgeLG(pGraph, toVertexID, fromVertexID);
         }

@@ -112,7 +112,7 @@ int addEdgewithWeightLG(LinkedGraph* pGraph, int fromVertexID, int toVertexID, i
             printf("add Element ERROR\n");
             return (FAIL);
         }
-        pGraph->currentEdgeCount++;
+        pGraph->currentEdgeCount++; 
         if (pGraph->graphType == GRAPH_UNDIRECTED) {
             addEdgewithWeightLG(pGraph, toVertexID, fromVertexID, weight);
         }
@@ -254,56 +254,4 @@ void displayLinkedGraph(LinkedGraph* pGraph) {
             printf("\n");
         }
     }
-}
-
-int main() {
-    LinkedGraph* undirectedGraph;
-    LinkedGraph* directGraph;
-
-    undirectedGraph = createLinkedGraph(6);
-    directGraph = createLinkedDirectedGraph(6);
-    addVertexLG(undirectedGraph, 0);
-    addVertexLG(undirectedGraph, 1);
-    addVertexLG(undirectedGraph, 2);
-    addVertexLG(undirectedGraph, 3);
-    addVertexLG(undirectedGraph, 4);
-    addVertexLG(undirectedGraph, 5);
-    addEdgeLG(undirectedGraph, 1, 0);
-    addEdgeLG(undirectedGraph, 2, 0);
-    addEdgeLG(undirectedGraph, 2, 1);
-    addEdgeLG(undirectedGraph, 3, 2);
-    addEdgeLG(undirectedGraph, 4, 3);
-    addEdgeLG(undirectedGraph, 5, 3);
-    addEdgeLG(undirectedGraph, 5, 4);
-    printf("=========================Undirect Graph=========================\n");
-    displayLinkedGraph(undirectedGraph);
-    printf("=======================remove vertexID 1=======================\n");
-    removeVertexLG(undirectedGraph, 1);
-    displayLinkedGraph(undirectedGraph);
-    printf("====================remove edge (2,0) (0,2)====================\n");
-    removeEdgeLG(undirectedGraph, 2, 0);
-    displayLinkedGraph(undirectedGraph);
-    addVertexLG(directGraph, 0);
-    addVertexLG(directGraph, 1);
-    addVertexLG(directGraph, 2);
-    addVertexLG(directGraph, 3);
-    addVertexLG(directGraph, 4);
-    addVertexLG(directGraph, 5);
-    addEdgewithWeightLG(directGraph, 0, 1, 1);
-    addEdgewithWeightLG(directGraph, 1, 2, 3);
-    addEdgewithWeightLG(directGraph, 2, 3, 1);
-    addEdgewithWeightLG(directGraph, 2, 1, 4);
-    addEdgewithWeightLG(directGraph, 2, 0, 1);
-    addEdgewithWeightLG(directGraph, 3, 4, 1);
-    addEdgewithWeightLG(directGraph, 3, 2, 5);
-    addEdgewithWeightLG(directGraph, 4, 5, 1);
-    addEdgewithWeightLG(directGraph, 5, 3, 2);
-    printf("==========================Direct Graph===========================\n");
-    displayLinkedGraph(directGraph);
-    printf("=======================remove vertexID 1=======================\n");
-    removeVertexLG(directGraph, 1);
-    displayLinkedGraph(directGraph);
-    printf("=======================remove edge <2,0>=======================\n");
-    removeEdgeLG(directGraph, 2, 0);
-    displayLinkedGraph(directGraph);
 }
