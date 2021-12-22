@@ -47,6 +47,8 @@ LinkedGraph* mstKruskal(LinkedGraph* pGraph) {
     return (mstGraph);
 }
 
+// 최적화를 위해 노드의 크기로 트리를 붙이는 것이 아니라 트리의 랭크 즉, 깊이로 붙이는 방법도 있다.
+// 다음에 구현해 보자.
 void unionParent(int* vertexUnion, int fromVertexID, int toVertexID) {
     fromVertexID = getParent(vertexUnion, fromVertexID);
     toVertexID = getParent(vertexUnion, toVertexID);
@@ -61,7 +63,7 @@ int getParent(int* vertexUnion, int vertexID) {
     if (vertexUnion[vertexID] == vertexID) {
         return (vertexID);
     }
-    return (getParent(vertexUnion, vertexUnion[vertexID]));
+    return (vertexUnion[vertexID] = getParent(vertexUnion, vertexUnion[vertexID]));
 }
 
 // Union - Find 알고리즘을 이용한다. DFS를 이용했을 때보다 효율적이다.
