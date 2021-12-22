@@ -70,7 +70,7 @@ Heap* orderEdges(LinkedGraph* pGraph) {
     return (retHeap);
 }
 
-// DFS 구현
+// DFS를 활용한 cycle search, 노드를 추가하기 전에 from에서 to로 갈 방법이 없어야 한다.
 int checkCycle(LinkedGraph* pGraph, int fromVertexID, int toVertexID) {
     int result;
     
