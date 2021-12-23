@@ -83,6 +83,7 @@ int addVertexLG(LinkedGraph* pGraph, int vertexID) {
         pGraph->currentVertexCount++;
         return (TRUE);
     }
+    printf("vertex already used\n");
     return (FAIL);
 }
 
