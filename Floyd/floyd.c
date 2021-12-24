@@ -39,11 +39,11 @@ int** floyd(LinkedGraph* pGraph) {
             }
         }
     }
-    for (int i = 0; i < maxVertexCount; i++) {
-        for (int j = 0; j < maxVertexCount; j++) {
-            for (int k = 0; k < maxVertexCount; k++) {
-                if (retList[j][i] + retList[i][k] < retList[j][k]) {
-                    retList[j][k] = retList[j][i] + retList[i][k];
+    for (int v = 0; v < maxVertexCount; v++) { // v는 중간노드
+        for (int r = 0; r < maxVertexCount; r++) { // r은 시작노드
+            for (int s = 0; s < maxVertexCount; s++) { // s는 종료노드
+                if (retList[r][v] + retList[v][s] < retList[r][s]) {
+                    retList[r][s] = retList[r][v] + retList[v][s];
                 }
             }
         }
@@ -54,8 +54,6 @@ int** floyd(LinkedGraph* pGraph) {
         }
         printf("==================================\n");
     }
-
-
     return (retList);
 }
 
