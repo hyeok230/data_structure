@@ -18,7 +18,7 @@ void selectionSort(int list[], int size) {
 }
 
 void printList(int list[], int size) {
-    for (int i = 0; i < size - 1; i++) {
+    for (int i = 0; i < size; i++) {
         printf("%d ", list[i]);
     }
     printf("\n");
